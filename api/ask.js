@@ -1,7 +1,7 @@
 // Vercel serverless function — POST /api/ask
-// Node.js 18+ (uses built-in fetch, no npm dependencies needed)
+// Node.js 18+ CommonJS (no npm deps needed; uses built-in fetch)
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'API key not configured.' });
+    return res.status(500).json({ error: 'AI service not configured.' });
   }
 
   try {
@@ -38,12 +38,7 @@ export default async function handler(req, res) {
         model: 'claude-3-haiku-20240307',
         max_tokens: 600,
         system: `You are a warm, experienced voice in the polyamory and ethical non-monogamy community. You give honest, practical, non-judgmental advice. You write like a wise friend who has been in the community for years — not a therapist, not an academic. Keep answers to 3-5 sentences that are genuinely useful. No bullet points. No preamble. Just straight, caring, real advice.`,
-        messages: [
-          {
-            role: 'user',
-            content: question.trim(),
-          },
-        ],
+        messages: [{ role: 'user', content: question.trim() }],
       }),
     });
 
@@ -65,4 +60,4 @@ export default async function handler(req, res) {
     console.error('Handler error:', err);
     return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
-}
+};
