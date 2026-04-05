@@ -1,8 +1,7 @@
 // Vercel serverless function — POST /api/ask
-// Node.js 18+ (uses built-in fetch, no npm dependencies needed)
+// CommonJS format required for Vercel Node.js runtime
 
-export default async function handler(req, res) {
-  // CORS headers
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -23,7 +22,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'API key not configured.' });
+    return res.status(500).json({ error: 'AI service not configured.' });
   }
 
   try {
@@ -38,12 +37,7 @@ export default async function handler(req, res) {
         model: 'claude-3-haiku-20240307',
         max_tokens: 600,
         system: `You are a warm, experienced voice in the polyamory and ethical non-monogamy community. You give honest, practical, non-judgmental advice. You write like a wise friend who has been in the community for years — not a therapist, not an academic. Keep answers to 3-5 sentences that are genuinely useful. No bullet points. No preamble. Just straight, caring, real advice.`,
-        messages: [
-          {
-            role: 'user',
-            content: question.trim(),
-          },
-        ],
+        messages: [{ role: 'user', content: question.trim() }],
       }),
     });
 
@@ -56,8 +50,8 @@ export default async function handler(req, res) {
     const data = await response.json();
     const answer =
       data.content
-        ?.filter((block) => block.type === 'text')
-        .map((block) => block.text)
+        ?.filter((b) => b.type === 'text')
+        .map((b) => b.text)
         .join('') || "I wasn't able to generate an answer right now. Please try again.";
 
     return res.status(200).json({ answer });
@@ -65,4 +59,4 @@ export default async function handler(req, res) {
     console.error('Handler error:', err);
     return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
-}
+};
