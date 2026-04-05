@@ -46,7 +46,7 @@
   .how-connector{display:flex;align-items:center;color:var(--gold);font-size:1.5rem;padding-top:16px;}
   @media(max-width:640px){.how-connector{display:none;}}
 
-  /* SECTION WRAPPER */
+  /* SECTION */
   .section{padding:64px 24px;max-width:1100px;margin:0 auto;}
   .section-title{font-size:1.8rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
   .section-sub{color:var(--grey);font-size:1rem;margin-bottom:40px;line-height:1.6;}
@@ -54,17 +54,17 @@
 
   /* EBOOK GRID */
   .ebook-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;}
-  .ebook-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+  .ebook-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
   .ebook-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(107,63,160,.15);}
   .ebook-cover{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-dark) 100%);padding:28px 20px 20px;color:#fff;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;}
   .ebook-cover h3{font-size:1.15rem;font-weight:700;line-height:1.3;margin-bottom:6px;}
   .ebook-cover p{font-size:.8rem;opacity:.75;line-height:1.4;}
   .ebook-cover .ebook-num{font-size:.7rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
   .ebook-body{padding:16px 20px 20px;}
-  .ebook-price{font-size:1.3rem;font-weight:700;color:var(--purple);margin-bottom:6px;}
-  .ebook-bundle-note{font-size:.75rem;color:var(--gold);font-weight:600;margin-bottom:10px;}
+  .ebook-price{font-size:1.3rem;font-weight:700;color:var(--purple);margin-bottom:4px;}
+  .ebook-sub{font-size:.78rem;color:var(--grey);margin-bottom:12px;}
   .ebook-body p{font-size:.85rem;color:var(--grey);line-height:1.5;margin-bottom:14px;}
-  .btn-buy{width:100%;background:var(--purple);color:#fff;padding:11px;border-radius:8px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:background .2s;}
+  .btn-buy{width:100%;background:var(--purple);color:#fff;padding:11px;border-radius:8px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:background .2s;display:block;text-align:center;}
   .btn-buy:hover{background:var(--purple-dark);}
 
   /* BUNDLE */
@@ -77,18 +77,8 @@
   .bundle-price-old{font-size:1rem;opacity:.6;text-decoration:line-through;margin-bottom:4px;}
   .bundle-price{font-size:3rem;font-weight:800;color:var(--gold);line-height:1;}
   .bundle-save{font-size:.85rem;background:var(--gold);color:#fff;padding:4px 12px;border-radius:20px;margin:10px auto;display:inline-block;}
-  .btn-bundle{background:var(--gold);color:#fff;padding:14px 32px;border-radius:10px;font-size:1.05rem;font-weight:700;border:none;cursor:pointer;margin-top:14px;width:100%;transition:background .2s;}
+  .btn-bundle{background:var(--gold);color:#fff;padding:14px 32px;border-radius:10px;font-size:1.05rem;font-weight:700;border:none;cursor:pointer;margin-top:14px;width:100%;transition:background .2s;display:block;text-align:center;}
   .btn-bundle:hover{background:#b8943d;}
-
-  /* ORIGINAL BOOK */
-  .original-section{background:var(--purple-light);border-radius:16px;padding:40px;margin-bottom:48px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;}
-  .original-badge{background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:inline-block;}
-  .original-section h2{font-size:1.6rem;font-weight:800;margin-bottom:8px;color:var(--dark);}
-  .original-section p{color:var(--grey);line-height:1.6;font-size:.95rem;max-width:520px;}
-  .original-right{text-align:center;min-width:180px;}
-  .orig-price{font-size:2.2rem;font-weight:800;color:var(--purple);}
-  .btn-orig{background:var(--purple);color:#fff;padding:13px 28px;border-radius:8px;font-weight:700;font-size:1rem;border:none;cursor:pointer;margin-top:12px;transition:background .2s;}
-  .btn-orig:hover{background:var(--purple-dark);}
 
   /* DIVIDER */
   .divider{border:none;border-top:1px solid var(--border);margin:0;}
@@ -99,8 +89,6 @@
   .qa-badge{background:var(--purple);color:#fff;font-size:.75rem;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:1px;margin-bottom:16px;display:inline-block;}
   .qa-title{font-size:1.8rem;font-weight:800;margin-bottom:8px;}
   .qa-sub{color:var(--grey);margin-bottom:32px;line-height:1.6;}
-
-  /* ask box */
   .ask-box{background:#fff;border-radius:14px;padding:24px;border:1px solid var(--border);margin-bottom:32px;box-shadow:0 2px 12px rgba(107,63,160,.08);}
   .ask-box textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:14px;font-size:.95rem;font-family:inherit;resize:vertical;min-height:90px;outline:none;transition:border .2s;}
   .ask-box textarea:focus{border-color:var(--purple);}
@@ -109,12 +97,8 @@
   .btn-ask{background:var(--purple);color:#fff;padding:10px 24px;border-radius:8px;font-weight:600;font-size:.9rem;border:none;cursor:pointer;transition:background .2s;}
   .btn-ask:hover{background:var(--purple-dark);}
   .btn-ask:disabled{opacity:.5;cursor:not-allowed;}
-
-  /* error state */
   .ask-error{background:#fff0f0;border:1px solid #ffcccc;border-radius:8px;padding:12px 16px;color:#c0392b;font-size:.88rem;margin-bottom:16px;display:none;}
   .ask-error.visible{display:block;}
-
-  /* Q&A feed */
   .qa-feed{display:flex;flex-direction:column;gap:20px;}
   .qa-item{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;}
   .qa-question{padding:20px 20px 14px;}
@@ -138,15 +122,12 @@
   footer{background:var(--dark);color:#aaa;text-align:center;padding:36px 24px;font-size:.85rem;}
   footer span{color:var(--gold);}
 
-  /* loading spinner */
   @keyframes spin{to{transform:rotate(360deg)}}
   .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--purple-light);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
 
-  /* Mobile */
   @media(max-width:600px){
     .nav-links{gap:14px;}
     .bundle-box{padding:28px 20px;}
-    .original-section{padding:28px 20px;}
   }
 </style>
 </head>
@@ -168,7 +149,7 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Navigate Open Relationships<br>With Real Confidence</h1>
-  <p>Guides, scripts, and community for everyone exploring polyamory and ethical non-monogamy. Real advice. No judgment.</p>
+  <p>Practical guides for every situation in ethical non-monogamy. Real advice, honest frameworks, zero judgment.</p>
   <div class="hero-btns">
     <a href="#books"><button class="btn btn-gold">Browse Guides</button></a>
     <a href="#qa"><button class="btn btn-outline">Ask the AI →</button></a>
@@ -185,19 +166,19 @@
       <div class="how-step">
         <div class="how-step-num">1</div>
         <div class="how-step-title">Browse Guides</div>
-        <div class="how-step-text">Explore 10 focused guides and the flagship Complete ENM Guide. Pick exactly what you need, or grab the full library.</div>
+        <div class="how-step-text">Pick the guide that fits where you are right now — or grab the full library at once.</div>
       </div>
       <div class="how-connector">→</div>
       <div class="how-step">
         <div class="how-step-num">2</div>
         <div class="how-step-title">Instant Download</div>
-        <div class="how-step-text">Secure checkout via Stripe. Download your PDFs immediately after purchase — no accounts, no waiting.</div>
+        <div class="how-step-text">Secure checkout via Stripe. Download your PDFs immediately — no accounts, no waiting.</div>
       </div>
       <div class="how-connector">→</div>
       <div class="how-step">
         <div class="how-step-num">3</div>
         <div class="how-step-title">Transform Your Relationships</div>
-        <div class="how-step-text">Real scripts, honest frameworks, and community Q&A to help you navigate ENM with clarity and confidence.</div>
+        <div class="how-step-text">Real scripts, honest frameworks, and community Q&A to help you navigate ENM with clarity.</div>
       </div>
     </div>
   </div>
@@ -207,165 +188,147 @@
 <div class="section" id="books">
   <div class="gold-bar"></div>
   <div class="section-title">The Poly Playbook Library</div>
-  <div class="section-sub">Practical, honest guides for every situation in ethical non-monogamy. Each one is a focused deep dive — no fluff, no filler.</div>
+  <div class="section-sub">10 focused guides covering every situation in ethical non-monogamy. No fluff, no filler — just real, practical advice.</div>
 
-  <!-- Flagship -->
-  <div class="original-section">
-    <div style="flex:1;min-width:260px;">
-      <div class="original-badge">⭐ Bestseller — Start Here</div>
-      <h2>The Complete ENM Guide</h2>
-      <p>The full foundation — 13 sections covering jealousy, communication scripts, time management, kids, long distance, common mistakes, and a complete glossary. Everything in one place.</p>
-      <div style="margin-top:10px;font-size:.85rem;color:var(--grey);">✓ 13 in-depth sections &nbsp;·&nbsp; ✓ 8 real scripts &nbsp;·&nbsp; ✓ 21-term glossary</div>
-    </div>
-    <div class="original-right">
-      <div class="orig-price">$14.99</div>
-      <div style="font-size:.8rem;color:var(--grey);margin-top:4px;">One-time · Instant download</div>
-      <a href="https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03" target="_blank">
-        <button class="btn-orig">Get the Complete Guide</button>
-      </a>
-    </div>
-  </div>
-
-  <!-- 10 individual ebooks -->
   <div class="ebook-grid">
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover">
         <div class="ebook-num">Guide 01</div>
         <h3>Jealousy Decoded</h3>
         <p>A complete field guide to the hardest emotion in open relationships</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>What jealousy actually is, what it's pointing to, and a 5-step process to work through it without imploding.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/7sYfZi0fa2jv6Jy5Q2cZa08" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover">
         <div class="ebook-num">Guide 02</div>
         <h3>Opening Up</h3>
         <p>Step-by-step guide to transitioning from mono to ENM</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>How to have the first conversation, navigate the negotiation phase, and survive the first three months.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/dRm28sge89LXc3S6U6cZa09" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2d6a9f,#1a4a7a);">
         <div class="ebook-num">Guide 03</div>
         <h3>Say It Right</h3>
         <p>50 word-for-word scripts for every hard ENM conversation</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$12.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Real scripts for opening up, jealousy talks, renegotiating agreements, metamour meetings, and breakups.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/7sY8wQe602jvec0emycZa0a" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2a7a5a,#1a5a3a);">
         <div class="ebook-num">Guide 04</div>
         <h3>Flying Solo</h3>
         <p>The real guide to solo polyamory — for solo polys and their partners</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>What solo poly actually means, how to navigate partners who want more, and how to build a fulfilling solo poly life.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/fZu5kE0fa9LXd7W92ecZa0b" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#7a4a2a,#5a2a0a);">
         <div class="ebook-num">Guide 05</div>
         <h3>Poly Parenting</h3>
         <p>Navigating ENM when children are part of the picture</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$12.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Age-appropriate disclosure, when to introduce partners, co-parenting across ENM, and what healthy actually looks like.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/dRm3cw0fa7DP1peemycZa0c" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#3a6a9a,#1a3a6a);">
         <div class="ebook-num">Guide 06</div>
         <h3>Love Across Distance</h3>
         <p>Maintaining real poly relationships when you can't be in the same room</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Scheduled presence, handling hard moments remotely, making visits count, and managing the asymmetry problem.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/6oU28s7HC4rDgk83HUcZa0d" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#6a2a7a,#4a0a5a);">
         <div class="ebook-num">Guide 07</div>
         <h3>No Rules, All Heart</h3>
         <p>A practical guide to relationship anarchy</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>What relationship anarchy actually means, the hierarchy problem, and how to practice RA in real life.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/3cI3cw6Dy2jv6Jy3HUcZa0e" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#7a2a2a,#5a0a0a);">
         <div class="ebook-num">Guide 08</div>
         <h3>Don't Do This</h3>
         <p>The 10 mistakes that destroy ENM relationships — and how to avoid every one</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>The veto trap, NRE mismanagement, opening to fix a broken relationship, and 7 more patterns that wreck things.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/4gMeVe5zu2jv6Jy0vIcZa0f" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2a6a4a,#0a4a2a);">
         <div class="ebook-num">Guide 09</div>
         <h3>The Time Problem</h3>
         <p>Scheduling, balance, and sanity in multi-partner relationships</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$9.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Protected time, shared calendars, the guilt spiral, and how to give everyone your actual best self.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/dRmaEY7HCe2dc3S2DQcZa0g" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
-    <div class="ebook-card" onclick="window.location.href='https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03'">
+    <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#3a3a7a,#1a1a5a);">
         <div class="ebook-num">Guide 10</div>
         <h3>The ENM Dictionary</h3>
         <p>Every term, concept, and framework you need to know</p>
       </div>
       <div class="ebook-body">
-        <div class="ebook-price">$7.99</div>
-        <div class="ebook-bundle-note">✦ Included in the Complete Library Bundle</div>
+        <div class="ebook-price">$8.99</div>
+        <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Compersion, NRE, metamour, polycule, fluid bonding, kitchen table poly, RA, and 20+ more — all defined clearly.</p>
-        <button class="btn-buy">Get This Guide →</button>
+        <a href="https://buy.stripe.com/eVq3cw0fae2dfg43HUcZa0h" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
@@ -375,19 +338,19 @@
   <div class="bundle-box" id="bundle">
     <div class="bundle-left">
       <h2>The Complete Library Bundle</h2>
-      <p>All 10 specialist guides plus the flagship Complete ENM Guide. Everything you'll ever need — one price, yours forever.</p>
+      <p>All 10 specialist guides in one shot. Everything you'll ever need — one price, yours forever.</p>
       <ul>
         <li>✓ All 10 specialist PDF guides</li>
-        <li>✓ The Complete ENM Guide (flagship)</li>
-        <li>✓ Instant download — all 11 files</li>
+        <li>✓ Instant download — all 10 files</li>
         <li>✓ No subscription, no expiry</li>
+        <li>✓ Save over $40 vs buying individually</li>
       </ul>
     </div>
     <div class="bundle-right">
-      <div class="bundle-price-old">$114.89 if bought separately</div>
+      <div class="bundle-price-old">$89.90 if bought separately</div>
       <div class="bundle-price">$49.99</div>
-      <div class="bundle-save">Save $64.90</div>
-      <a href="https://buy.stripe.com/3cIcN64vqgal0la2DQcZa03" target="_blank" style="display:block;">
+      <div class="bundle-save">Save $39.91</div>
+      <a href="https://buy.stripe.com/fZu8wQ1je6zL1pe6U6cZa0i" target="_blank" style="display:block;">
         <button class="btn-bundle">Get the Full Library — $49.99</button>
       </a>
     </div>
@@ -396,14 +359,13 @@
 
 <hr class="divider"/>
 
-<!-- AI Q&A SECTION -->
+<!-- AI Q&A -->
 <div class="qa-section" id="qa">
   <div class="qa-inner">
     <div class="qa-badge">✦ AI POWERED COMMUNITY</div>
     <div class="qa-title">Ask Anything. Get Real Answers.</div>
     <div class="qa-sub">Ask any question about polyamory, ENM, or open relationships. Our AI answers instantly — then the community can weigh in too.</div>
 
-    <!-- Ask box -->
     <div class="ask-box">
       <textarea id="questionInput" placeholder="Ask anything — e.g. 'How do I tell my partner I'm jealous without starting a fight?' or 'What's the difference between hierarchical poly and relationship anarchy?'"></textarea>
       <div class="ask-box-footer">
@@ -413,7 +375,6 @@
     </div>
     <div class="ask-error" id="askError"></div>
 
-    <!-- Q&A Feed -->
     <div class="qa-feed" id="qaFeed"></div>
   </div>
 </div>
@@ -429,22 +390,19 @@
 </footer>
 
 <script>
-// ── Q&A store with pre-loaded sample entries ──
 const qaStore = [
   {
     id: 1,
     question: "My partner just started dating someone new and I can't stop checking their location. What do I do?",
     time: "2 hours ago",
-    aiAnswer: "What you're feeling is really common, and it has a name — location anxiety or 'hyper-vigilance' during NRE periods. Your nervous system is treating the new relationship as a threat and trying to manage uncertainty by gathering data. The problem is it never works. Checking the location gives you information but not the thing you actually want, which is security. The fix isn't to stop checking by willpower — it's to address the underlying need. That means having a direct conversation with your partner: 'I've been struggling when you're out and I need some reassurance that I matter to you.' Then agree on a simple check-in system — a text when they arrive somewhere, a goodnight message — that gives your nervous system something real to work with. Over time, as the trust builds, the urge to check will fade.",
-    replies: [
-      { author: "Community member", text: "This happened to me too. The check-in texts helped SO much. My partner wasn't bothered at all when I asked." }
-    ]
+    aiAnswer: "What you're feeling is really common, and it has a name — location anxiety during NRE periods. Your nervous system is treating the new relationship as a threat and trying to manage uncertainty by gathering data. The problem is it never works — checking gives you information but not the thing you actually want, which is security. Talk to your partner directly: 'I've been struggling when you're out and I need some reassurance that I matter to you.' Then agree on a simple check-in system that gives your nervous system something real to work with. Over time, as trust builds, the urge fades.",
+    replies: [{ author: "Community member", text: "The check-in texts helped SO much for me too. My partner wasn't bothered at all when I asked." }]
   },
   {
     id: 2,
     question: "How do I explain polyamory to my conservative parents without it becoming a disaster?",
     time: "5 hours ago",
-    aiAnswer: "The most important decision to make first is whether you need to tell them at all right now. If this is brand new, giving it time to establish before introducing it to your family isn't avoidance — it's wisdom. When you are ready, lead with what's stayed the same rather than what's different. 'I'm still the same person you raised. I'm in relationships that are honest, consensual, and make me happy' lands differently than a full philosophy lecture on ethical non-monogamy. Expect the first conversation to not go well. That's normal. Plant the seed and give them time. Most parents come around when they see you're happy and healthy. What tends to backfire: over-explaining the theory, pushing for immediate acceptance, or introducing partners before your parents have had time to process.",
+    aiAnswer: "First decision: do you actually need to tell them right now? If this is new, giving it time to establish before introducing it to family isn't avoidance — it's wisdom. When you are ready, lead with what's stayed the same: 'I'm still the same person you raised. I'm in relationships that are honest and make me happy.' Expect the first conversation to not go well — that's normal. Plant the seed and give them time. Most parents come around when they see you're happy and healthy.",
     replies: []
   }
 ];
@@ -452,11 +410,7 @@ const qaStore = [
 let nextId = 3;
 
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function renderFeed() {
@@ -466,14 +420,11 @@ function renderFeed() {
     const el = document.createElement('div');
     el.className = 'qa-item';
     el.id = `qa-${item.id}`;
-
     const repliesHtml = item.replies.map(r => `
       <div class="reply-item">
         <div class="reply-author">${escHtml(r.author)}</div>
         ${escHtml(r.text)}
-      </div>
-    `).join('');
-
+      </div>`).join('');
     el.innerHTML = `
       <div class="qa-question">
         <div class="qa-question-text">${escHtml(item.question)}</div>
@@ -481,11 +432,7 @@ function renderFeed() {
       </div>
       <div class="qa-ai-answer">
         <div class="qa-ai-label"><span class="ai-dot"></span> AI Answer</div>
-        <div class="qa-ai-text" id="ai-text-${item.id}">${
-          item.aiAnswer
-            ? escHtml(item.aiAnswer)
-            : '<span class="qa-loading"><span class="spinner"></span>Thinking...</span>'
-        }</div>
+        <div class="qa-ai-text" id="ai-text-${item.id}">${item.aiAnswer ? escHtml(item.aiAnswer) : '<span class="qa-loading"><span class="spinner"></span>Thinking...</span>'}</div>
       </div>
       <div class="qa-replies" id="replies-${item.id}">
         ${repliesHtml}
@@ -493,8 +440,7 @@ function renderFeed() {
           <input type="text" placeholder="Add your experience..." id="reply-input-${item.id}" onkeydown="if(event.key==='Enter')addReply(${item.id})"/>
           <button class="btn-reply" onclick="addReply(${item.id})">Reply</button>
         </div>
-      </div>
-    `;
+      </div>`;
     feed.appendChild(el);
   });
 }
@@ -504,52 +450,36 @@ async function submitQuestion() {
   const btn = document.getElementById('askBtn');
   const errorEl = document.getElementById('askError');
   const q = input.value.trim();
-
   if (!q) return;
-
-  // Reset error state
   errorEl.classList.remove('visible');
-  errorEl.textContent = '';
-
   btn.disabled = true;
   btn.textContent = 'Asking…';
   input.value = '';
-
   const id = nextId++;
   const newItem = { id, question: q, time: 'Just now', aiAnswer: null, replies: [] };
   qaStore.push(newItem);
   renderFeed();
-
-  // Scroll to new item
   setTimeout(() => {
     const el = document.getElementById(`qa-${id}`);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 100);
-
   try {
     const res = await fetch('/api/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: q }),
     });
-
     if (!res.ok) {
-      let msg = 'Something went wrong. Please try again.';
-      try {
-        const errData = await res.json();
-        if (errData.error) msg = errData.error;
-      } catch (_) {}
-      throw new Error(msg);
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.error || 'Something went wrong.');
     }
-
     const data = await res.json();
-    newItem.aiAnswer = data.answer || "I wasn't able to generate an answer right now. Try again in a moment.";
+    newItem.aiAnswer = data.answer || "I wasn't able to generate an answer. Try again in a moment.";
   } catch (err) {
     newItem.aiAnswer = err.message || "Something went wrong reaching the AI. Please try again.";
-    errorEl.textContent = '⚠️ ' + (err.message || 'Could not reach the AI. Please try again.');
+    errorEl.textContent = '⚠️ ' + newItem.aiAnswer;
     errorEl.classList.add('visible');
   }
-
   renderFeed();
   btn.disabled = false;
   btn.textContent = 'Ask the AI →';
@@ -567,7 +497,6 @@ function addReply(id) {
   renderFeed();
 }
 
-// Initial render
 renderFeed();
 </script>
 </body>
