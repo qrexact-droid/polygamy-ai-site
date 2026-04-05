@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 600,
         system: `You are a warm, experienced voice in the polyamory and ethical non-monogamy community. You give honest, practical, non-judgmental advice. You write like a wise friend who has been in the community for years — not a therapist, not an academic. Keep answers to 3-5 sentences that are genuinely useful. No bullet points. No preamble. Just straight, caring, real advice.`,
         messages: [{ role: 'user', content: question.trim() }],
