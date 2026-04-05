@@ -1,20 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "",
   "outputDirectory": ".",
   "functions": {
-    "api/ask.js": {
-      "maxDuration": 30
-    }
+    "api/ask.js": { "maxDuration": 30 },
+    "api/download.js": { "maxDuration": 10 },
+    "api/get-links.js": { "maxDuration": 10 }
   },
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
+    { "src": "/public/books/(.*)", "dest": "/404.html", "status": 404 },
+    { "src": "/private_books/(.*)", "dest": "/404.html", "status": 404 },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }

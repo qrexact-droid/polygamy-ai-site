@@ -156,35 +156,36 @@
 </footer>
 
 <script>
-const ALL_GUIDES = [
-  { num: "01", title: "Jealousy Decoded",      desc: "A complete field guide to the hardest emotion in open relationships", file: "01_jealousy_decoded.pdf" },
-  { num: "02", title: "Opening Up",             desc: "Step-by-step guide to transitioning from mono to ENM",               file: "02_opening_up_guide.pdf" },
-  { num: "03", title: "Say It Right",           desc: "50 word-for-word scripts for every hard ENM conversation",           file: "03_communication_scripts.pdf" },
-  { num: "04", title: "Flying Solo",            desc: "The real guide to solo polyamory",                                   file: "04_solo_poly.pdf" },
-  { num: "05", title: "Poly Parenting",         desc: "Navigating ENM when children are part of the picture",              file: "05_kids_and_poly.pdf" },
-  { num: "06", title: "Love Across Distance",   desc: "Maintaining real poly relationships across distance",                file: "06_long_distance_poly.pdf" },
-  { num: "07", title: "No Rules, All Heart",    desc: "A practical guide to relationship anarchy",                         file: "07_relationship_anarchy.pdf" },
-  { num: "08", title: "Don't Do This",          desc: "10 mistakes that destroy ENM relationships — and how to avoid them", file: "08_common_mistakes.pdf" },
-  { num: "09", title: "The Time Problem",       desc: "Scheduling, balance, and sanity in multi-partner relationships",    file: "09_calendar_and_time.pdf" },
-  { num: "10", title: "The ENM Dictionary",     desc: "Every term, concept, and framework you need to know",               file: "10_glossary_and_foundations.pdf" },
-];
+const GUIDE_INFO = {
+  "01": { title: "Jealousy Decoded",      desc: "A complete field guide to the hardest emotion in open relationships" },
+  "02": { title: "Opening Up",            desc: "Step-by-step guide to transitioning from mono to ENM" },
+  "03": { title: "Say It Right",          desc: "50 word-for-word scripts for every hard ENM conversation" },
+  "04": { title: "Flying Solo",           desc: "The real guide to solo polyamory" },
+  "05": { title: "Poly Parenting",        desc: "Navigating ENM when children are part of the picture" },
+  "06": { title: "Love Across Distance",  desc: "Maintaining real poly relationships across distance" },
+  "07": { title: "No Rules, All Heart",   desc: "A practical guide to relationship anarchy" },
+  "08": { title: "Don't Do This",         desc: "10 mistakes that destroy ENM relationships — and how to avoid them" },
+  "09": { title: "The Time Problem",      desc: "Scheduling, balance, and sanity in multi-partner relationships" },
+  "10": { title: "The ENM Dictionary",    desc: "Every term, concept, and framework you need to know" },
+};
 
-function makeItem(guide) {
+function makeItem(guideNum, downloadUrl) {
+  const info = GUIDE_INFO[guideNum] || { title: `Guide ${guideNum}`, desc: '' };
   return `
     <div class="dl-item">
       <div class="dl-item-icon">📙</div>
       <div class="dl-item-info">
-        <div class="dl-item-title">Guide ${guide.num} — ${guide.title}</div>
-        <div class="dl-item-meta">${guide.desc} · PDF</div>
+        <div class="dl-item-title">Guide ${guideNum} — ${info.title}</div>
+        <div class="dl-item-meta">${info.desc} · PDF · Link expires in 2 hours</div>
       </div>
-      <a href="/public/books/${guide.file}" download class="btn-dl">⬇ Download</a>
+      <a href="${downloadUrl}" class="btn-dl">⬇ Download</a>
     </div>`;
 }
 
-(function() {
+(async function() {
   const params = new URLSearchParams(window.location.search);
   const ref = params.get('ref');
-  const guideNum = params.get('guide'); // e.g. "01", "03", etc.
+  const guideNum = params.get('guide');
 
   if (ref !== 'paid') {
     document.getElementById('accessDenied').style.display = 'block';
@@ -193,35 +194,42 @@ function makeItem(guide) {
 
   document.getElementById('downloadContent').style.display = 'block';
   const dlList = document.getElementById('dlList');
+  dlList.innerHTML = '<div style="padding:20px;color:#888;text-align:center;">Generating your secure download links…</div>';
 
-  if (guideNum) {
-    // Individual guide purchase
-    const guide = ALL_GUIDES.find(g => g.num === guideNum);
+  try {
+    const res = await fetch('/api/get-links', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: 'paid', guide: guideNum || null }),
+    });
+    const data = await res.json();
 
-    if (guide) {
+    if (!res.ok || !data.links) throw new Error(data.error || 'Failed to get links');
+
+    const isBundle = !guideNum;
+    const isSingle = !!guideNum && data.links.length === 1;
+
+    if (isSingle) {
+      const g = data.links[0];
+      const info = GUIDE_INFO[g.guide] || {};
       document.getElementById('successTitle').textContent = 'Purchase Complete — Your guide is ready!';
-      document.getElementById('successText').textContent = `Thank you for purchasing Guide ${guide.num}: ${guide.title}. Your download is below.`;
+      document.getElementById('successText').textContent = `Thank you for purchasing Guide ${g.guide}: ${info.title}. Your secure download is below.`;
       document.getElementById('dlTitle').textContent = 'Your Download';
-      document.getElementById('dlSub').textContent = 'Click the button to download your PDF. Bookmark this page — it never expires.';
-      dlList.innerHTML = makeItem(guide);
+      document.getElementById('dlSub').textContent = 'Click to download your PDF. Links expire after 2 hours for security.';
+      document.getElementById('upsellBanner').style.display = 'flex';
     } else {
-      // Unknown guide number — show all as fallback
-      document.getElementById('dlTitle').textContent = 'Your Downloads';
-      document.getElementById('dlSub').textContent = 'All guides are available below.';
-      dlList.innerHTML = ALL_GUIDES.map(makeItem).join('');
+      document.getElementById('successTitle').textContent = 'Purchase Complete — All 10 guides are ready!';
+      document.getElementById('successText').textContent = 'Thank you for your purchase. All 10 guides are available below.';
+      document.getElementById('dlTitle').textContent = 'Your Downloads — Complete Library';
+      document.getElementById('dlSub').textContent = 'All 10 guides included. Links expire after 2 hours — download them now.';
     }
 
-    // Show upsell for individual buyers
-    document.getElementById('upsellBanner').style.display = 'flex';
+    dlList.innerHTML = data.links.map(l => makeItem(l.guide, l.url)).join('');
 
-  } else {
-    // Bundle purchase — show everything
-    document.getElementById('successTitle').textContent = 'Purchase Complete — All 10 guides are ready!';
-    document.getElementById('successText').textContent = 'Thank you for purchasing the Complete Library Bundle. All 10 guides are available below.';
-    document.getElementById('dlTitle').textContent = 'Your Downloads — Complete Library';
-    document.getElementById('dlSub').textContent = 'All 10 guides included in your bundle. Download any or all of them below.';
-    dlList.innerHTML = ALL_GUIDES.map(makeItem).join('');
-    // No upsell — they already have everything
+  } catch(err) {
+    dlList.innerHTML = `<div style="padding:20px;color:#c0392b;text-align:center;">
+      Something went wrong generating your links. Please email <strong>hello@polygamy.ai</strong> and we'll sort you out right away.
+    </div>`;
   }
 })();
 </script>
