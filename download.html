@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Download Your Guides — polygamy.ai</title>
+<link rel="icon" type="image/svg+xml" href="/public/favicon.svg"/>
+<style>
+  :root {
+    --purple:#6B3FA0; --purple-dark:#4A2070; --purple-light:#F0E8FA;
+    --gold:#C9A84C; --dark:#1A1A2E; --grey:#555; --light:#F8F5FF;
+    --white:#fff; --border:#E0D5F0;
+    --green:#1a7a4a; --green-light:#e8f7ef;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:var(--dark);}
+  a{color:inherit;text-decoration:none;}
+
+  /* NAV */
+  nav{background:var(--dark);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
+  .nav-logo img{display:block;}
+  .nav-links{display:flex;gap:24px;}
+  .nav-links a{color:#ccc;font-size:.9rem;transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+
+  /* MAIN CONTENT */
+  .main{max-width:860px;margin:0 auto;padding:48px 24px 80px;}
+
+  /* ACCESS DENIED */
+  .denied-box{text-align:center;padding:80px 24px;}
+  .denied-icon{font-size:4rem;margin-bottom:16px;}
+  .denied-title{font-size:1.6rem;font-weight:800;color:var(--dark);margin-bottom:12px;}
+  .denied-text{font-size:1rem;color:var(--grey);line-height:1.6;margin-bottom:28px;}
+  .btn-home{background:var(--purple);color:#fff;padding:13px 28px;border-radius:8px;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:background .2s;display:inline-block;}
+  .btn-home:hover{background:var(--purple-dark);}
+
+  /* SUCCESS BANNER */
+  .success-banner{background:var(--green-light);border:2px solid var(--green);border-radius:14px;padding:24px 28px;margin-bottom:36px;display:flex;align-items:flex-start;gap:16px;}
+  .success-icon{font-size:2.2rem;line-height:1;flex-shrink:0;}
+  .success-title{font-size:1.3rem;font-weight:800;color:var(--green);margin-bottom:4px;}
+  .success-text{font-size:.95rem;color:var(--green);opacity:.85;line-height:1.5;}
+
+  /* BOOKMARK NOTICE */
+  .bookmark-notice{background:#fff9e6;border:1.5px solid var(--gold);border-radius:10px;padding:14px 18px;margin-bottom:32px;font-size:.88rem;color:#7a5c00;line-height:1.5;}
+  .bookmark-notice strong{color:#5a4000;}
+
+  /* DOWNLOAD LIST */
+  .dl-section-title{font-size:1.4rem;font-weight:800;color:var(--dark);margin-bottom:6px;}
+  .dl-section-sub{font-size:.9rem;color:var(--grey);margin-bottom:24px;line-height:1.5;}
+  .gold-bar{width:48px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:16px;}
+
+  .dl-list{display:flex;flex-direction:column;gap:14px;}
+  .dl-item{border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:16px;transition:box-shadow .2s;}
+  .dl-item:hover{box-shadow:0 4px 16px rgba(107,63,160,.1);}
+  .dl-item-icon{font-size:1.6rem;flex-shrink:0;}
+  .dl-item-info{flex:1;}
+  .dl-item-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:3px;}
+  .dl-item-meta{font-size:.8rem;color:var(--grey);}
+  .dl-item-badge{font-size:.7rem;background:var(--gold);color:#fff;padding:2px 8px;border-radius:10px;font-weight:700;margin-left:6px;text-transform:uppercase;letter-spacing:.5px;vertical-align:middle;}
+  .btn-dl{background:var(--purple);color:#fff;padding:10px 20px;border-radius:8px;font-size:.88rem;font-weight:600;border:none;cursor:pointer;white-space:nowrap;transition:background .2s;display:inline-block;}
+  .btn-dl:hover{background:var(--purple-dark);}
+
+  /* DISCLAIMER */
+  .disclaimer{background:var(--light);border-radius:10px;padding:16px 20px;margin-top:36px;font-size:.82rem;color:var(--grey);line-height:1.6;text-align:center;}
+  .disclaimer strong{color:var(--dark);}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:#aaa;text-align:center;padding:32px 24px;font-size:.85rem;}
+  footer span{color:var(--gold);}
+
+  /* Hidden by default */
+  #accessDenied{display:none;}
+  #downloadContent{display:none;}
+
+  @media(max-width:580px){
+    .dl-item{flex-wrap:wrap;}
+    .btn-dl{width:100%;text-align:center;}
+    .success-banner{flex-direction:column;gap:10px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="/public/logo.svg" alt="polygamy.ai" height="36"/></a>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#books">Books</a>
+    <a href="mailto:hello@polygamy.ai">Support</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ACCESS DENIED STATE -->
+  <div id="accessDenied">
+    <div class="denied-box">
+      <div class="denied-icon">🤔</div>
+      <div class="denied-title">Looks like you ended up here by accident</div>
+      <div class="denied-text">
+        This page is for customers who have completed their purchase.<br/>
+        If you've already bought your guides, please check your email for the download link,<br/>
+        or contact us at <strong>hello@polygamy.ai</strong> and we'll sort you out.
+      </div>
+      <a href="/"><button class="btn-home">← Back to the Bookstore</button></a>
+    </div>
+  </div>
+
+  <!-- DOWNLOAD CONTENT STATE -->
+  <div id="downloadContent">
+
+    <!-- Success banner -->
+    <div class="success-banner">
+      <div class="success-icon">🎉</div>
+      <div>
+        <div class="success-title">Purchase Complete — Your guides are ready to download!</div>
+        <div class="success-text">Thank you for your purchase. All 11 files are available below. Download them now or come back any time.</div>
+      </div>
+    </div>
+
+    <!-- Bookmark notice -->
+    <div class="bookmark-notice">
+      📌 <strong>Bookmark this page</strong> — you can download your files anytime you need them. This page doesn't expire.
+    </div>
+
+    <!-- Downloads -->
+    <div class="gold-bar"></div>
+    <div class="dl-section-title">Your Downloads</div>
+    <div class="dl-section-sub">All 11 guides included in your Complete Library Bundle. Click any button to download.</div>
+
+    <div class="dl-list">
+
+      <!-- Flagship -->
+      <div class="dl-item">
+        <div class="dl-item-icon">📘</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">The Complete ENM Guide <span class="dl-item-badge">⭐ Flagship</span></div>
+          <div class="dl-item-meta">13 sections · 8 scripts · 21-term glossary · PDF</div>
+        </div>
+        <a href="/public/books/00_complete_enm_guide.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <!-- 10 individual guides -->
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 01 — Jealousy Decoded</div>
+          <div class="dl-item-meta">A complete field guide to the hardest emotion in open relationships · PDF</div>
+        </div>
+        <a href="/public/books/01_jealousy_decoded.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 02 — Opening Up</div>
+          <div class="dl-item-meta">Step-by-step guide to transitioning from mono to ENM · PDF</div>
+        </div>
+        <a href="/public/books/02_opening_up.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 03 — Say It Right</div>
+          <div class="dl-item-meta">50 word-for-word scripts for every hard ENM conversation · PDF</div>
+        </div>
+        <a href="/public/books/03_say_it_right.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 04 — Flying Solo</div>
+          <div class="dl-item-meta">The real guide to solo polyamory — for solo polys and their partners · PDF</div>
+        </div>
+        <a href="/public/books/04_flying_solo.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 05 — Poly Parenting</div>
+          <div class="dl-item-meta">Navigating ENM when children are part of the picture · PDF</div>
+        </div>
+        <a href="/public/books/05_poly_parenting.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 06 — Love Across Distance</div>
+          <div class="dl-item-meta">Maintaining real poly relationships when you can't be in the same room · PDF</div>
+        </div>
+        <a href="/public/books/06_love_across_distance.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 07 — No Rules, All Heart</div>
+          <div class="dl-item-meta">A practical guide to relationship anarchy · PDF</div>
+        </div>
+        <a href="/public/books/07_no_rules_all_heart.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 08 — Don't Do This</div>
+          <div class="dl-item-meta">The 10 mistakes that destroy ENM relationships — and how to avoid every one · PDF</div>
+        </div>
+        <a href="/public/books/08_dont_do_this.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 09 — The Time Problem</div>
+          <div class="dl-item-meta">Scheduling, balance, and sanity in multi-partner relationships · PDF</div>
+        </div>
+        <a href="/public/books/09_the_time_problem.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+      <div class="dl-item">
+        <div class="dl-item-icon">📙</div>
+        <div class="dl-item-info">
+          <div class="dl-item-title">Guide 10 — The ENM Dictionary</div>
+          <div class="dl-item-meta">Every term, concept, and framework you need to know · PDF</div>
+        </div>
+        <a href="/public/books/10_glossary_and_foundations.pdf" download>
+          <button class="btn-dl">⬇ Download</button>
+        </a>
+      </div>
+
+    </div><!-- /.dl-list -->
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <strong>Personal use only.</strong> These guides are licensed for your personal use and may not be redistributed, resold, or shared publicly.
+      Need help? Email <strong>hello@polygamy.ai</strong> — we respond within 24 hours.
+      <br/><br/>
+      Not a substitute for professional relationship counseling or therapy.
+    </div>
+
+  </div><!-- /#downloadContent -->
+
+</div><!-- /.main -->
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:10px;">
+    <img src="/public/logo.svg" alt="polygamy.ai" height="26" style="opacity:.65;"/>
+  </div>
+  <div style="margin-bottom:8px;"><span>polygamy.ai</span> — Navigate Open Relationships With Confidence</div>
+  <div>hello@polygamy.ai &nbsp;·&nbsp; For personal use only &nbsp;·&nbsp; © 2025 The Poly Playbook</div>
+</footer>
+
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('ref') === 'paid') {
+    document.getElementById('downloadContent').style.display = 'block';
+  } else {
+    document.getElementById('accessDenied').style.display = 'block';
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Three interlocking rings forming a triangle cluster -->
+  <!-- Top circle -->
+  <circle cx="16" cy="10" r="7" fill="none" stroke="#6B3FA0" stroke-width="2.2"/>
+  <!-- Bottom-left circle -->
+  <circle cx="10" cy="21" r="7" fill="none" stroke="#6B3FA0" stroke-width="2.2"/>
+  <!-- Bottom-right circle -->
+  <circle cx="22" cy="21" r="7" fill="none" stroke="#6B3FA0" stroke-width="2.2"/>
+  <!-- Gold center overlap -->
+  <circle cx="16" cy="17" r="3" fill="#C9A84C" opacity="0.9"/>
+</svg>
