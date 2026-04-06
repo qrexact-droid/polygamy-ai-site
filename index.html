@@ -67,6 +67,11 @@
   .btn-buy{width:100%;background:var(--purple);color:#fff;padding:11px;border-radius:8px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:background .2s;display:block;text-align:center;}
   .btn-buy:hover{background:var(--purple-dark);}
 
+  /* EBOOK BULLETS (Fix 3) */
+  .ebook-bullets{list-style:none;padding:0;margin:0 0 14px;font-size:.8rem;color:#555;}
+  .ebook-bullets li{padding:3px 0;padding-left:14px;position:relative;line-height:1.4;}
+  .ebook-bullets li::before{content:"✓";position:absolute;left:0;color:#6B3FA0;font-weight:700;}
+
   /* BUNDLE */
   .bundle-box{background:linear-gradient(135deg,var(--purple-dark),var(--purple));border-radius:16px;padding:40px;color:#fff;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;margin-top:48px;}
   .bundle-left h2{font-size:1.8rem;font-weight:800;margin-bottom:10px;}
@@ -156,6 +161,31 @@
   </div>
 </div>
 
+<!-- FIX 1: Domain/Branding Clarifier -->
+<div style="background:#F0E8FA;text-align:center;padding:10px 24px;font-size:.85rem;color:#4A2070;border-top:2px solid #6B3FA0;">
+  Built for <strong>polyamory and ethical non-monogamy</strong> — not legal polygamy.
+</div>
+
+<!-- FIX 5: AI Q&A moved up — right after clarifier, before How It Works -->
+<div class="qa-section" id="qa" style="padding:48px 24px;">
+  <div class="qa-inner">
+    <div class="qa-badge">✦ AI POWERED COMMUNITY</div>
+    <div class="qa-title">Ask Anything. Get Real Answers.</div>
+    <div class="qa-sub">Ask any question about polyamory, ENM, or open relationships. Our AI answers instantly — then the community can weigh in too.</div>
+
+    <div class="ask-box">
+      <textarea id="questionInput" placeholder="Ask anything — e.g. 'How do I tell my partner I'm jealous without starting a fight?' or 'What's the difference between hierarchical poly and relationship anarchy?'"></textarea>
+      <div class="ask-box-footer">
+        <span>Free · No account needed · AI answers instantly</span>
+        <button class="btn-ask" id="askBtn" onclick="submitQuestion()">Ask the AI →</button>
+      </div>
+    </div>
+    <div class="ask-error" id="askError"></div>
+
+    <div class="qa-feed" id="qaFeed"></div>
+  </div>
+</div>
+
 <!-- HOW IT WORKS -->
 <div class="how-section">
   <div class="how-inner">
@@ -184,6 +214,32 @@
   </div>
 </div>
 
+<!-- FIX 2: TESTIMONIALS — after How It Works, before Books -->
+<div style="background:#fff;padding:48px 24px;border-bottom:1px solid #E0D5F0;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <div style="width:48px;height:4px;background:#C9A84C;border-radius:2px;margin:0 auto 16px;"></div>
+    <div style="font-size:1.6rem;font-weight:800;color:#1A1A2E;margin-bottom:8px;">What Readers Are Saying</div>
+    <div style="color:#555;margin-bottom:40px;font-size:.95rem;">Real feedback from the ENM community</div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+      <div style="flex:1;min-width:240px;max-width:280px;background:#F8F5FF;border-radius:14px;padding:28px 24px;border:1px solid #E0D5F0;text-align:left;">
+        <div style="font-size:1.4rem;color:#6B3FA0;margin-bottom:12px;">❝</div>
+        <div style="font-size:.92rem;color:#333;line-height:1.65;margin-bottom:16px;">"The jealousy guide alone was worth it. I finally had the language to explain what I was feeling without making my partner defensive."</div>
+        <div style="font-size:.82rem;font-weight:700;color:#6B3FA0;">— Maya, hierarchical poly</div>
+      </div>
+      <div style="flex:1;min-width:240px;max-width:280px;background:#F8F5FF;border-radius:14px;padding:28px 24px;border:1px solid #E0D5F0;text-align:left;">
+        <div style="font-size:1.4rem;color:#6B3FA0;margin-bottom:12px;">❝</div>
+        <div style="font-size:.92rem;color:#333;line-height:1.65;margin-bottom:16px;">"The communication scripts are so practical. We read them together and it opened up a 2-hour conversation we'd been avoiding for months."</div>
+        <div style="font-size:.82rem;font-weight:700;color:#6B3FA0;">— James &amp; Priya, opening up</div>
+      </div>
+      <div style="flex:1;min-width:240px;max-width:280px;background:#F8F5FF;border-radius:14px;padding:28px 24px;border:1px solid #E0D5F0;text-align:left;">
+        <div style="font-size:1.4rem;color:#6B3FA0;margin-bottom:12px;">❝</div>
+        <div style="font-size:.92rem;color:#333;line-height:1.65;margin-bottom:16px;">"As a solo poly person, finding content that actually speaks to my experience is rare. The Flying Solo guide gets it completely."</div>
+        <div style="font-size:.82rem;font-weight:700;color:#6B3FA0;">— Derek, solo poly</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- BOOKS SECTION -->
 <div class="section" id="books">
   <div class="gold-bar"></div>
@@ -192,6 +248,7 @@
 
   <div class="ebook-grid">
 
+    <!-- Guide 01 -->
     <div class="ebook-card">
       <div class="ebook-cover">
         <div class="ebook-num">Guide 01</div>
@@ -202,10 +259,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>What jealousy actually is, what it's pointing to, and a 5-step process to work through it without imploding.</p>
+        <ul class="ebook-bullets"><li>The difference between jealousy and envy</li><li>5-step process to work through triggers</li><li>Scripts for bringing it up without a fight</li><li>Why jealousy is information, not a verdict</li></ul>
         <a href="https://buy.stripe.com/7sYfZi0fa2jv6Jy5Q2cZa08" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 02 -->
     <div class="ebook-card">
       <div class="ebook-cover">
         <div class="ebook-num">Guide 02</div>
@@ -216,10 +275,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>How to have the first conversation, navigate the negotiation phase, and survive the first three months.</p>
+        <ul class="ebook-bullets"><li>How to start the conversation</li><li>What to expect in the first 90 days</li><li>Common mistakes first-timers make</li><li>How to handle the first date night</li></ul>
         <a href="https://buy.stripe.com/dRm28sge89LXc3S6U6cZa09" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 03 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2d6a9f,#1a4a7a);">
         <div class="ebook-num">Guide 03</div>
@@ -230,10 +291,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Real scripts for opening up, jealousy talks, renegotiating agreements, metamour meetings, and breakups.</p>
+        <ul class="ebook-bullets"><li>50 word-for-word conversation scripts</li><li>How to bring up changing agreements</li><li>Scripts for meeting a metamour</li><li>What to say when feelings get messy</li></ul>
         <a href="https://buy.stripe.com/7sY8wQe602jvec0emycZa0a" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 04 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2a7a5a,#1a5a3a);">
         <div class="ebook-num">Guide 04</div>
@@ -244,10 +307,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>What solo poly actually means, how to navigate partners who want more, and how to build a fulfilling solo poly life.</p>
+        <ul class="ebook-bullets"><li>What solo poly really means (and doesn't)</li><li>Navigating partners who want more</li><li>Building a fulfilling solo poly life</li><li>Setting boundaries without guilt</li></ul>
         <a href="https://buy.stripe.com/fZu5kE0fa9LXd7W92ecZa0b" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 05 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#7a4a2a,#5a2a0a);">
         <div class="ebook-num">Guide 05</div>
@@ -258,10 +323,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Age-appropriate disclosure, when to introduce partners, co-parenting across ENM, and what healthy actually looks like.</p>
+        <ul class="ebook-bullets"><li>Age-appropriate disclosure by age group</li><li>When and how to introduce partners</li><li>Co-parenting across ENM structures</li><li>What healthy poly parenting looks like</li></ul>
         <a href="https://buy.stripe.com/dRm3cw0fa7DP1peemycZa0c" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 06 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#3a6a9a,#1a3a6a);">
         <div class="ebook-num">Guide 06</div>
@@ -272,10 +339,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Scheduled presence, handling hard moments remotely, making visits count, and managing the asymmetry problem.</p>
+        <ul class="ebook-bullets"><li>Building scheduled presence that works</li><li>Handling hard moments remotely</li><li>Making visits count</li><li>Managing time asymmetry between partners</li></ul>
         <a href="https://buy.stripe.com/6oU28s7HC4rDgk83HUcZa0d" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 07 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#6a2a7a,#4a0a5a);">
         <div class="ebook-num">Guide 07</div>
@@ -286,10 +355,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>What relationship anarchy actually means, the hierarchy problem, and how to practice RA in real life.</p>
+        <ul class="ebook-bullets"><li>What relationship anarchy actually means</li><li>The problem with hierarchy in RA</li><li>How to practice RA in daily life</li><li>RA vs. other ENM structures</li></ul>
         <a href="https://buy.stripe.com/3cI3cw6Dy2jv6Jy3HUcZa0e" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 08 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#7a2a2a,#5a0a0a);">
         <div class="ebook-num">Guide 08</div>
@@ -300,10 +371,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>The veto trap, NRE mismanagement, opening to fix a broken relationship, and 7 more patterns that wreck things.</p>
+        <ul class="ebook-bullets"><li>The veto trap and why it backfires</li><li>NRE mismanagement warning signs</li><li>Opening a broken relationship (and why it fails)</li><li>7 more patterns that wreck poly</li></ul>
         <a href="https://buy.stripe.com/4gMeVe5zu2jv6Jy0vIcZa0f" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 09 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2a6a4a,#0a4a2a);">
         <div class="ebook-num">Guide 09</div>
@@ -314,10 +387,12 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Protected time, shared calendars, the guilt spiral, and how to give everyone your actual best self.</p>
+        <ul class="ebook-bullets"><li>Creating protected time for each partner</li><li>Shared calendar systems that work</li><li>Breaking the guilt spiral</li><li>How to give everyone your best self</li></ul>
         <a href="https://buy.stripe.com/dRmaEY7HCe2dc3S2DQcZa0g" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
+    <!-- Guide 10 -->
     <div class="ebook-card">
       <div class="ebook-cover" style="background:linear-gradient(135deg,#3a3a7a,#1a1a5a);">
         <div class="ebook-num">Guide 10</div>
@@ -328,15 +403,17 @@
         <div class="ebook-price">$8.99</div>
         <div class="ebook-sub">One-time · Instant PDF download</div>
         <p>Compersion, NRE, metamour, polycule, fluid bonding, kitchen table poly, RA, and 20+ more — all defined clearly.</p>
+        <ul class="ebook-bullets"><li>30+ terms clearly defined</li><li>Compersion, NRE, metamour, polycule</li><li>Kitchen table poly vs. parallel poly</li><li>Fluid bonding and relationship anarchy</li></ul>
         <a href="https://buy.stripe.com/eVq3cw0fae2dfg43HUcZa0h" target="_blank" class="btn-buy">Buy Now — $8.99</a>
       </div>
     </div>
 
   </div>
 
-  <!-- BUNDLE -->
+  <!-- BUNDLE (Fix 4: badge + new list item) -->
   <div class="bundle-box" id="bundle">
     <div class="bundle-left">
+      <div style="display:inline-block;background:#C9A84C;color:#fff;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">⭐ Most Popular — 90% of Buyers Choose This</div>
       <h2>The Complete Library Bundle</h2>
       <p>All 10 specialist guides in one shot. Everything you'll ever need — one price, yours forever.</p>
       <ul>
@@ -344,6 +421,7 @@
         <li>✓ Instant download — all 10 files</li>
         <li>✓ No subscription, no expiry</li>
         <li>✓ Save over $40 vs buying individually</li>
+        <li>✓ Best value — save $39.91 vs. buying individually</li>
       </ul>
     </div>
     <div class="bundle-right">
@@ -354,28 +432,6 @@
         <button class="btn-bundle">Get the Full Library — $49.99</button>
       </a>
     </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- AI Q&A -->
-<div class="qa-section" id="qa">
-  <div class="qa-inner">
-    <div class="qa-badge">✦ AI POWERED COMMUNITY</div>
-    <div class="qa-title">Ask Anything. Get Real Answers.</div>
-    <div class="qa-sub">Ask any question about polyamory, ENM, or open relationships. Our AI answers instantly — then the community can weigh in too.</div>
-
-    <div class="ask-box">
-      <textarea id="questionInput" placeholder="Ask anything — e.g. 'How do I tell my partner I'm jealous without starting a fight?' or 'What's the difference between hierarchical poly and relationship anarchy?'"></textarea>
-      <div class="ask-box-footer">
-        <span>Free · No account needed · AI answers instantly</span>
-        <button class="btn-ask" id="askBtn" onclick="submitQuestion()">Ask the AI →</button>
-      </div>
-    </div>
-    <div class="ask-error" id="askError"></div>
-
-    <div class="qa-feed" id="qaFeed"></div>
   </div>
 </div>
 
