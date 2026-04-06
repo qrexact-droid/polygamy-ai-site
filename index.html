@@ -132,8 +132,17 @@
   .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--purple-light);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
 
   @media(max-width:600px){
-    .nav-links{gap:14px;}
     .bundle-box{padding:28px 20px;}
+  }
+  @media(max-width:480px){
+    nav{padding:0 12px;}
+    .nav-logo img{height:28px;}
+    .nav-links{gap:8px;}
+    .nav-links a{font-size:.72rem;}
+  }
+  @media(max-width:600px){
+    .testimonials-row{flex-direction:column !important;align-items:stretch !important;}
+    .testimonials-row > div{max-width:100% !important;width:100% !important;}
   }
 </style>
 </head>
@@ -222,7 +231,7 @@
     <div style="width:48px;height:4px;background:#C9A84C;border-radius:2px;margin:0 auto 16px;"></div>
     <div style="font-size:1.6rem;font-weight:800;color:#1A1A2E;margin-bottom:8px;">What Readers Are Saying</div>
     <div style="color:#555;margin-bottom:40px;font-size:.95rem;">Real feedback from the ENM community</div>
-    <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+    <div class="testimonials-row" style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
       <div style="flex:1;min-width:0;width:100%;max-width:280px;background:#F8F5FF;border-radius:14px;padding:28px 24px;border:1px solid #E0D5F0;text-align:left;">
         <div style="font-size:1.4rem;color:#6B3FA0;margin-bottom:12px;">❝</div>
         <div style="font-size:.92rem;color:#333;line-height:1.65;margin-bottom:16px;">"The jealousy guide alone was worth it. I finally had the language to explain what I was feeling without making my partner defensive."</div>
