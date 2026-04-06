@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog | polygamy.ai — Polyamory & Ethical Non-Monogamy Guides</title>
+<meta name="description" content="Practical guides on polyamory, ethical non-monogamy, jealousy, opening relationships, and more. Written by people who've lived it."/>
+<link rel="icon" type="image/svg+xml" href="/public/favicon.svg"/>
+<style>
+  :root {
+    --purple:#6B3FA0; --purple-dark:#4A2070; --purple-light:#F0E8FA;
+    --gold:#C9A84C; --dark:#1A1A2E; --grey:#555; --light:#F8F5FF;
+    --white:#fff; --border:#E0D5F0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:var(--dark);}
+  a{color:inherit;text-decoration:none;}
+
+  nav{background:var(--dark);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
+  .nav-logo img{display:block;}
+  .nav-links{display:flex;gap:24px;}
+  .nav-links a{color:#ccc;font-size:.9rem;transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a.active{color:var(--gold);}
+
+  footer{background:var(--dark);color:#aaa;text-align:center;padding:36px 24px;font-size:.85rem;}
+  footer span{color:var(--gold);}
+
+  .blog-hero{background:linear-gradient(135deg,var(--purple-dark) 0%,var(--purple) 100%);color:#fff;padding:60px 24px 50px;text-align:center;}
+  .blog-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:12px;}
+  .blog-hero p{font-size:1.05rem;opacity:.85;max-width:520px;margin:0 auto;line-height:1.7;}
+
+  .blog-main{max-width:1100px;margin:0 auto;padding:48px 24px 80px;}
+  .blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  @media(max-width:640px){.blog-grid{grid-template-columns:1fr;}}
+
+  .post-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;}
+  .post-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(107,63,160,.15);}
+  .post-card-header{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-dark) 100%);padding:24px 22px;color:#fff;}
+  .post-card-kw{font-size:.7rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .post-card-title{font-size:1.1rem;font-weight:700;line-height:1.3;}
+  .post-card-body{padding:18px 22px 20px;flex:1;display:flex;flex-direction:column;}
+  .post-card-date{font-size:.78rem;color:var(--grey);margin-bottom:10px;}
+  .post-card-excerpt{font-size:.88rem;color:var(--grey);line-height:1.6;flex:1;margin-bottom:16px;}
+  .post-card-link{display:inline-block;color:var(--purple);font-weight:600;font-size:.9rem;transition:color .2s;}
+  .post-card-link:hover{color:var(--purple-dark);text-decoration:underline;}
+
+  .blog-loading{text-align:center;color:var(--grey);padding:48px;font-size:1rem;}
+  .blog-error{text-align:center;color:#c00;padding:48px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="/public/logo.svg" alt="polygamy.ai" height="36"/></a>
+  </div>
+  <div class="nav-links">
+    <a href="/#books">Books</a>
+    <a href="/#bundle">Bundle</a>
+    <a href="/#qa">Ask AI</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="mailto:hello@polygamy.ai">Contact</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <h1>The Poly Playbook Blog</h1>
+  <p>Practical guides on polyamory, ethical non-monogamy, jealousy, opening relationships, and everything in between — written by people who've lived it.</p>
+</div>
+
+<div class="blog-main">
+  <div id="blog-grid" class="blog-grid">
+    <div class="blog-loading">Loading posts…</div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:10px;">
+    <img src="/public/logo.svg" alt="polygamy.ai" height="28" style="opacity:.7;"/>
+  </div>
+  <div style="margin-bottom:8px;"><span>polygamy.ai</span> — Navigate Open Relationships With Confidence</div>
+  <div>hello@polygamy.ai &nbsp;·&nbsp; For personal use only &nbsp;·&nbsp; © 2025 The Poly Playbook</div>
+  <div style="margin-top:6px;font-size:.78rem;opacity:.6;">Not a substitute for professional relationship counseling or therapy.</div>
+</footer>
+
+<script>
+(async function() {
+  const grid = document.getElementById('blog-grid');
+  try {
+    const resp = await fetch('/blog/posts.json');
+    if (!resp.ok) throw new Error('Failed to load posts');
+    const posts = await resp.json();
+    
+    if (!posts.length) {
+      grid.innerHTML = '<p style="color:var(--grey);text-align:center;padding:40px;">No posts yet — check back soon!</p>';
+      return;
+    }
+    
+    // Sort newest first
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    grid.innerHTML = posts.map(post => {
+      const dateStr = new Date(post.date + 'T12:00:00').toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+      const excerpt = post.excerpt.length > 140 ? post.excerpt.slice(0, 140) + '…' : post.excerpt;
+      return `
+        <article class="post-card">
+          <div class="post-card-header">
+            <div class="post-card-kw">${escHtml(post.keyword)}</div>
+            <div class="post-card-title">${escHtml(post.title)}</div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-date">${dateStr}</div>
+            <div class="post-card-excerpt">${escHtml(excerpt)}</div>
+            <a href="/blog/${escHtml(post.slug)}.html" class="post-card-link">Read More →</a>
+          </div>
+        </article>`;
+    }).join('');
+  } catch(e) {
+    grid.innerHTML = `<div class="blog-error">Could not load posts. <a href="/">Go home</a></div>`;
+  }
+})();
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
