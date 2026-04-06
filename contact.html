@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — polygamy.ai</title>
+<link rel="icon" type="image/svg+xml" href="/public/favicon.svg"/>
+<style>
+  :root {
+    --purple:#6B3FA0; --purple-dark:#4A2070; --purple-light:#F0E8FA;
+    --gold:#C9A84C; --dark:#1A1A2E; --grey:#555; --light:#F8F5FF;
+    --border:#E0D5F0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:var(--dark);}
+  a{color:inherit;text-decoration:none;}
+  nav{background:var(--dark);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
+  .nav-logo img{display:block;}
+  .nav-links{display:flex;gap:24px;}
+  .nav-links a{color:#ccc;font-size:.9rem;transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+  .main{max-width:560px;margin:80px auto;padding:0 24px 80px;text-align:center;}
+  .icon{font-size:3rem;margin-bottom:20px;}
+  h1{font-size:1.8rem;font-weight:800;color:var(--dark);margin-bottom:12px;}
+  .sub{color:var(--grey);font-size:1rem;line-height:1.7;margin-bottom:40px;}
+  .email-box{background:var(--purple-light);border:2px solid var(--border);border-radius:14px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .email-text{font-size:1.1rem;font-weight:600;color:var(--purple);letter-spacing:.3px;user-select:all;}
+  .copy-btn{background:var(--purple);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .2s;white-space:nowrap;}
+  .copy-btn:hover{background:var(--purple-dark);}
+  .copy-btn.copied{background:#1a7a4a;}
+  .note{margin-top:24px;font-size:.85rem;color:#999;line-height:1.6;}
+  footer{background:var(--dark);color:#aaa;text-align:center;padding:32px 24px;font-size:.85rem;}
+  footer span{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="/public/logo.svg" alt="polygamy.ai" height="36"/></a>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#books">Guides</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#qa">Ask AI</a>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="icon">✉️</div>
+  <h1>Need Help?</h1>
+  <div class="sub">We're here for any questions about your purchase, downloads, or anything else. Copy the email below and reach out — we respond within 24 hours.</div>
+
+  <div class="email-box">
+    <span class="email-text" id="email-addr">polygamy.ai.app@gmail.com</span>
+    <button class="copy-btn" id="copy-btn" onclick="copyEmail()">Copy Email</button>
+  </div>
+
+  <div class="note">
+    For download issues, include your order confirmation number.<br/>
+    For everything else, just say hi — we don't bite.
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px;"><span>polygamy.ai</span> — Navigate Open Relationships With Confidence</div>
+  <div>© 2025 The Poly Playbook · For personal use only</div>
+</footer>
+
+<script>
+function copyEmail() {
+  const email = document.getElementById('email-addr').innerText;
+  navigator.clipboard.writeText(email).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy Email';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+</script>
+</body>
+</html>
