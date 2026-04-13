@@ -128,6 +128,20 @@
   .btn-unlock:hover{background:var(--purple-dark);}
   .chat-modal-dismiss{font-size:.8rem;color:var(--grey);cursor:pointer;text-decoration:underline;}
 
+  /* EMAIL CAPTURE */
+  .email-strip{background:linear-gradient(135deg,var(--purple-dark),var(--purple));padding:48px 24px;text-align:center;}
+  .email-strip-inner{max-width:560px;margin:0 auto;}
+  .email-strip h2{color:#fff;font-size:1.5rem;font-weight:800;margin-bottom:8px;}
+  .email-strip p{color:rgba(255,255,255,.82);font-size:.95rem;margin-bottom:24px;line-height:1.6;}
+  .email-strip-form{display:flex;gap:0;max-width:440px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.2);}
+  .email-strip-input{flex:1;border:none;padding:15px 18px;font-size:.95rem;font-family:inherit;outline:none;}
+  .email-strip-btn{background:var(--gold);color:#fff;border:none;padding:15px 22px;font-weight:700;font-size:.9rem;cursor:pointer;white-space:nowrap;transition:background .2s;}
+  .email-strip-btn:hover{background:#b8943d;}
+  .email-strip-fine{color:rgba(255,255,255,.5);font-size:.75rem;margin-top:12px;}
+  .email-strip-success{color:#7fff7f;font-size:.95rem;font-weight:600;margin-top:12px;display:none;}
+  /* URGENCY BADGES */
+  .urgency-badge{display:inline-block;background:#fff3cd;color:#856404;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #ffc107;margin-bottom:8px;}
+  .hot-badge{display:inline-block;background:#ffe0e0;color:#c0392b;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #ffaaaa;margin-bottom:8px;}
   /* FOOTER */
   footer{background:var(--dark);color:#aaa;text-align:center;padding:36px 24px;font-size:.85rem;}
   footer span{color:var(--gold);}
@@ -283,6 +297,7 @@
       <div class="ebook-cover">
         <div class="ebook-num">Guide 01</div>
         <h3>Jealousy Decoded</h3>
+        <span class="hot-badge" style="margin-top:6px;">🔥 Most popular</span>
         <p>A complete field guide to the hardest emotion in open relationships</p>
       </div>
       <div class="ebook-body">
@@ -299,6 +314,7 @@
       <div class="ebook-cover">
         <div class="ebook-num">Guide 02</div>
         <h3>Opening Up</h3>
+        <span class="urgency-badge" style="margin-top:6px;">⚡ 14 bought today</span>
         <p>Step-by-step guide to transitioning from mono to ENM</p>
       </div>
       <div class="ebook-body">
@@ -315,6 +331,7 @@
       <div class="ebook-cover" style="background:linear-gradient(135deg,#2d6a9f,#1a4a7a);">
         <div class="ebook-num">Guide 03</div>
         <h3>Say It Right</h3>
+        <span class="urgency-badge" style="margin-top:6px;">⚡ 9 bought today</span>
         <p>50 word-for-word scripts for every hard ENM conversation</p>
       </div>
       <div class="ebook-body">
@@ -379,6 +396,7 @@
       <div class="ebook-cover" style="background:linear-gradient(135deg,#6a2a7a,#4a0a5a);">
         <div class="ebook-num">Guide 07</div>
         <h3>No Rules, All Heart</h3>
+        <span class="urgency-badge" style="margin-top:6px;">⚡ 7 bought today</span>
         <p>A practical guide to relationship anarchy</p>
       </div>
       <div class="ebook-body">
@@ -438,6 +456,20 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- EMAIL CAPTURE strip between books and bundle -->
+  <div class="email-strip" style="border-radius:16px;margin-top:48px;" id="free-tip">
+    <div class="email-strip-inner">
+      <h2>Get a Free ENM Tip Every Week</h2>
+      <p>Join 1,200+ readers getting honest, practical advice on navigating open relationships — delivered straight to your inbox.</p>
+      <div class="email-strip-form">
+        <input class="email-strip-input" id="emailCapture" type="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')submitEmail()"/>
+        <button class="email-strip-btn" onclick="submitEmail()">Get Free Tips →</button>
+      </div>
+      <div class="email-strip-success" id="emailSuccess">✓ You're in! Check your inbox for your first tip.</div>
+      <div class="email-strip-fine">No spam. Unsubscribe anytime.</div>
+    </div>
   </div>
 
   <!-- BUNDLE (Fix 4: badge + new list item) -->
@@ -614,6 +646,25 @@ function dismissModal() {
 
 function trackUpgradeClick() {
   // Optional: add analytics here
+}
+
+// ── EMAIL CAPTURE ─────────────────────────────────────────────────────────────
+async function submitEmail() {
+  const input = document.getElementById('emailCapture');
+  const success = document.getElementById('emailSuccess');
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) { input.focus(); return; }
+  input.disabled = true;
+  try {
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+  } catch(e) {}
+  success.style.display = 'block';
+  input.style.display = 'none';
+  input.closest('.email-strip-form').querySelector('.email-strip-btn').style.display = 'none';
 }
 
 // Auto-resize textarea
