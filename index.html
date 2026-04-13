@@ -142,6 +142,17 @@
   /* URGENCY BADGES */
   .urgency-badge{display:inline-block;background:#fff3cd;color:#856404;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #ffc107;margin-bottom:8px;}
   .hot-badge{display:inline-block;background:#ffe0e0;color:#c0392b;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #ffaaaa;margin-bottom:8px;}
+  /* PAYWALL EBOOK PICKER */
+  .ebook-picker{margin:20px 0 0;text-align:left;}
+  .ebook-picker-label{font-size:.8rem;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+  .ebook-picker-list{list-style:none;display:flex;flex-direction:column;gap:6px;max-height:240px;overflow-y:auto;padding-right:4px;}
+  .ebook-picker-list::-webkit-scrollbar{width:4px;}
+  .ebook-picker-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+  .ebook-picker-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;font-size:.85rem;color:var(--dark);}
+  .ebook-picker-item:hover{border-color:var(--purple);background:var(--purple-light);}
+  .ebook-picker-item.selected{border-color:var(--purple);background:var(--purple-light);font-weight:600;}
+  .ebook-picker-item .pick-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;transition:all .15s;}
+  .ebook-picker-item.selected .pick-dot{background:var(--purple);border-color:var(--purple);}
   /* FOOTER */
   footer{background:var(--dark);color:#aaa;text-align:center;padding:36px 24px;font-size:.85rem;}
   footer span{color:var(--gold);}
@@ -200,15 +211,15 @@
   <div class="qa-inner">
     <div class="qa-badge">✦ AI POWERED</div>
     <div class="qa-title">Ask Anything. Have a Real Conversation.</div>
-    <div class="qa-sub">Chat with an AI that actually understands polyamory and ENM. No judgment. 3 free messages — then $6.99/month for unlimited.</div>
+    <div class="qa-sub">Chat with an AI that actually understands polyamory and ENM. No judgment. 3 free messages — then $2.99/month for unlimited chat, saved history, and a free guide.</div>
     <div class="chat-window">
       <div class="chat-header">
         <span class="chat-header-dot"></span>
         <span class="chat-header-name">Poly AI</span>
-        <span class="chat-header-sub">Always online · No judgment</span>
+        <span class="chat-header-sub">Always online · No judgment · 3 free messages</span>
       </div>
       <div class="chat-messages" id="chatMessages"></div>
-      <div class="chat-counter" id="chatCounter">3 free messages remaining</div>
+      <div class="chat-counter" id="chatCounter">3 free messages · <a href="#" onclick="showPaywall();return false;" style="color:var(--purple);font-weight:600;text-decoration:none;">Upgrade $2.99/mo →</a></div>
       <div class="chat-input-row">
         <textarea class="chat-input" id="chatInput" placeholder="Ask anything about polyamory, ENM, jealousy, communication..." rows="1" onkeydown="chatKeydown(event)"></textarea>
         <button class="chat-send" id="chatSend" onclick="sendMessage()">➤</button>
@@ -219,14 +230,38 @@
 
 <!-- PAYWALL MODAL -->
 <div class="chat-modal-overlay" id="paywallModal">
-  <div class="chat-modal">
+  <div class="chat-modal" style="max-width:480px;">
     <div class="chat-modal-icon">💬</div>
     <div class="chat-modal-title">You've used your 3 free messages</div>
-    <div class="chat-modal-sub">Upgrade for unlimited AI conversations about polyamory, jealousy, communication, agreements, and everything in between.</div>
-    <div class="chat-modal-price">$6.99</div>
+    <div class="chat-modal-sub">Unlock unlimited conversations, save your chat history, and get <strong>any guide free</strong> — all for $2.99/month. Less than a cup of coffee.</div>
+    <div style="background:var(--purple-light);border-radius:10px;padding:12px 16px;margin-bottom:16px;text-align:left;font-size:.85rem;color:var(--dark);">
+      <div style="font-weight:700;margin-bottom:6px;color:var(--purple);">What you get:</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div>✅ Unlimited AI conversations</div>
+        <div>✅ Saved chat history — pick up where you left off</div>
+        <div>✅ 1 free ebook of your choice ($8.99 value)</div>
+      </div>
+    </div>
+    <div class="ebook-picker">
+      <div class="ebook-picker-label">Pick your free ebook:</div>
+      <ul class="ebook-picker-list" id="ebookPickerList">
+        <li class="ebook-picker-item" data-guide="01" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 01 — Jealousy Decoded</li>
+        <li class="ebook-picker-item" data-guide="02" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 02 — Opening Up</li>
+        <li class="ebook-picker-item" data-guide="03" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 03 — Say It Right (50 Scripts)</li>
+        <li class="ebook-picker-item" data-guide="04" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 04 — Flying Solo</li>
+        <li class="ebook-picker-item" data-guide="05" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 05 — Poly Parenting</li>
+        <li class="ebook-picker-item" data-guide="06" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 06 — Love Across Distance</li>
+        <li class="ebook-picker-item" data-guide="07" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 07 — No Rules, All Heart (RA)</li>
+        <li class="ebook-picker-item" data-guide="08" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 08 — Don’t Do This (Top Mistakes)</li>
+        <li class="ebook-picker-item" data-guide="09" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 09 — The Time Problem</li>
+        <li class="ebook-picker-item" data-guide="10" onclick="pickEbook(this)"><span class="pick-dot"></span>Guide 10 — The ENM Dictionary</li>
+      </ul>
+    </div>
+    <div style="font-size:.75rem;color:var(--grey);margin:10px 0 4px;">Your free guide will be emailed after signup.</div>
+    <div class="chat-modal-price" style="margin-top:8px;">$2.99</div>
     <div class="chat-modal-price-sub">per month · cancel anytime</div>
-    <a class="btn-unlock" href="https://buy.stripe.com/3cI3cwe60aQ1gk8a6icZa0j" target="_blank" onclick="trackUpgradeClick()">Unlock Unlimited Chat →</a>
-    <div class="chat-modal-dismiss" onclick="dismissModal()">No thanks, I'll stick with 3 messages</div>
+    <a class="btn-unlock" id="unlockBtn" href="https://buy.stripe.com/4gM4gA4vq2jvgk80vIcZa0k" target="_blank" onclick="trackUpgradeClick()">Unlock Everything →</a>
+    <div class="chat-modal-dismiss" onclick="dismissModal()">No thanks, I’ll keep my 3 free messages</div>
   </div>
 </div>
 
@@ -510,7 +545,7 @@
 <script>
 // ── CHAT STATE ────────────────────────────────────────────────────────────────
 const FREE_LIMIT = 3;
-const STRIPE_LINK = 'https://buy.stripe.com/3cI3cwe60aQ1gk8a6icZa0j';
+const STRIPE_LINK = 'https://buy.stripe.com/4gM4gA4vq2jvgk80vIcZa0k';
 const STORAGE_KEY = 'poly_chat_count';
 const UNLOCK_KEY  = 'poly_chat_unlocked';
 
@@ -532,19 +567,20 @@ function initChat() {
   msgCount = isUnlocked ? 0 : parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
   updateCounter();
   // Seed with a welcome bubble
-  appendBubble('ai', 'Hey 👋 I\'m here to help with anything about polyamory, ENM, jealousy, communication, agreements — whatever\'s on your mind. What\'s going on?');
+  appendBubble('ai', 'Hey 👋 I\'m here to help with anything about polyamory, ENM, jealousy, communication, agreements — whatever\'s on your mind. Ask me anything. (3 free messages — upgrade for unlimited + a free guide for $2.99/mo)');
 }
 
 function updateCounter() {
   const el = document.getElementById('chatCounter');
   if (!el) return;
   if (isUnlocked) {
-    el.textContent = '✓ Unlimited chat unlocked';
+    el.innerHTML = '✓ Unlimited chat unlocked';
     el.className = 'chat-counter';
     el.style.color = 'var(--purple)';
   } else {
     const left = Math.max(0, FREE_LIMIT - msgCount);
-    el.textContent = left === 1 ? '1 free message remaining' : `${left} free messages remaining`;
+    const leftTxt = left === 1 ? '1 free message' : `${left} free messages`;
+    el.innerHTML = `${leftTxt} &middot; <a href="#" onclick="showPaywall();return false;" style="color:var(--purple);font-weight:600;text-decoration:none;">Upgrade $2.99/mo &rarr;</a>`;
     el.className = left <= 1 ? 'chat-counter warn' : 'chat-counter';
   }
 }
@@ -642,6 +678,18 @@ function showPaywall() {
 
 function dismissModal() {
   document.getElementById('paywallModal').classList.remove('active');
+}
+
+let selectedEbook = null;
+
+function pickEbook(el) {
+  document.querySelectorAll('.ebook-picker-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedEbook = el.dataset.guide;
+  // Append selected guide to Stripe URL as metadata param
+  const base = 'https://buy.stripe.com/4gM4gA4vq2jvgk80vIcZa0k';
+  const btn = document.getElementById('unlockBtn');
+  if (btn) btn.href = base + '?prefilled_promo_code=&client_reference_id=guide_' + selectedEbook;
 }
 
 function trackUpgradeClick() {
