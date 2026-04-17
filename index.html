@@ -116,6 +116,8 @@
   .chat-send{background:var(--purple);color:#fff;border:none;padding:0 22px;font-weight:700;font-size:1.1rem;cursor:pointer;transition:background .2s;flex-shrink:0;}
   .chat-send:hover{background:var(--purple-dark);}
   .chat-send:disabled{opacity:.4;cursor:not-allowed;}
+  .chat-copy-btn{display:inline-block;margin-left:8px;padding:1px 6px;font-size:.75rem;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--grey);cursor:pointer;vertical-align:middle;line-height:1.4;transition:background .15s,color .15s;}
+  .chat-copy-btn:hover{background:var(--purple-light);color:var(--purple);}
   /* PAYWALL MODAL */
   .chat-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:none;align-items:center;justify-content:center;}
   .chat-modal-overlay.active{display:flex;}
@@ -591,10 +593,28 @@ function appendBubble(role, text, id) {
   const row = document.createElement('div');
   row.className = `chat-bubble-row ${role}`;
   if (id) row.id = id;
-  const avatar = role === 'ai'
-    ? `<div class="chat-avatar">🤍</div>`
-    : `<div class="chat-avatar">👤</div>`;
-  row.innerHTML = `${avatar}<div class="chat-bubble ${role}">${escHtml(text)}</div>`;
+  const bubble = document.createElement('div');
+  bubble.className = `chat-bubble ${role}`;
+  bubble.textContent = text;
+  if (role === 'ai') {
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'chat-copy-btn';
+    copyBtn.title = 'Copy to clipboard';
+    copyBtn.textContent = '⎘';
+    copyBtn.onclick = function() {
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.textContent = '✓';
+        setTimeout(() => { copyBtn.textContent = '⎘'; }, 1500);
+      });
+    };
+    bubble.appendChild(copyBtn);
+  }
+  row.innerHTML = '';
+  const avatarEl = document.createElement('div');
+  avatarEl.className = 'chat-avatar';
+  avatarEl.textContent = role === 'ai' ? '🤍' : '👤';
+  row.appendChild(avatarEl);
+  row.appendChild(bubble);
   msgs.appendChild(row);
   msgs.scrollTop = msgs.scrollHeight;
   return row;
@@ -609,6 +629,20 @@ function appendTyping() {
   msgs.appendChild(row);
   msgs.scrollTop = msgs.scrollHeight;
 }
+
+// Override copy event on chat messages — always paste as plain text
+document.addEventListener('DOMContentLoaded', function() {
+  const chatMsgs = document.getElementById('chatMessages');
+  if (chatMsgs) {
+    chatMsgs.addEventListener('copy', function(e) {
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed) return;
+      e.preventDefault();
+      e.clipboardData.setData('text/plain', selection.toString());
+      e.clipboardData.setData('text/html', selection.toString());
+    });
+  }
+});
 
 function removeTyping() {
   const el = document.getElementById('typing-indicator');
